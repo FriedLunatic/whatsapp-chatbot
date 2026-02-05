@@ -170,13 +170,13 @@ def whatsapp_webhook():
     
     current_state = get_user_state(from_number)
     
-    # Handle main menu state
-    if current_state == "main_menu" or incoming_msg.lower() in ["menu", "start", "hi", "hello"]:
+    # Handle main menu state or welcome messages
+    if incoming_msg.lower() in ["menu", "start", "hi", "hello"]:
         msg.body(MAIN_MENU)
         set_user_state(from_number, "main_menu")
     
     # Handle condition selection
-    elif current_state == "main_menu" or incoming_msg in ["1", "2", "3", "4", "5", "6"]:
+    elif incoming_msg in ["1", "2", "3", "4", "5", "6", "7", "8"]:
         if incoming_msg in GI_CONDITIONS:
             condition_info = GI_CONDITIONS[incoming_msg]
             response = f"{condition_info['info']}\n\n"
